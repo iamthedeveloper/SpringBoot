@@ -1,13 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
 	http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>spring-boot-with-web-thymeleaf</artifactId>
-	<packaging>jar</packaging>
-	<name>Spring Boot with Web Thymeleaf</name>
-	<description>Spring Boot with Web Thymeleaf</description>
+	<artifactId>spring-boot-with-jsp</artifactId>
+	<packaging>war</packaging>
+	<name>Spring Boot Web JSP</name>
+	<description>Spring Boot With JSP</description>
 	<version>1.0</version>
 
 	<parent>
@@ -18,19 +19,41 @@
 
 	<dependencies>
 
+		<!-- This is a web application -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
-		<!-- hot swapping, disable cache for template, enable live reload -->
+		<!-- Tomcat embedded container-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<optional>true</optional>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
 		</dependency>
 
-		<!-- Optional, for bootstrap -->
+		<!-- JSTL for JSP -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+		</dependency>
+
+		<!-- Need this to compile JSP -->
+		<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-jasper</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- Need this to compile JSP, tomcat-embed-jasper version -->
+		<dependency>
+			<groupId>org.eclipse.jdt.core.compiler</groupId>
+			<artifactId>ecj</artifactId>
+			<version>4.6.1</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- Optional, test for static content, bootstrap CSS-->
 		<dependency>
 			<groupId>org.webjars</groupId>
 			<artifactId>bootstrap</artifactId>
@@ -38,7 +61,6 @@
 		</dependency>
 
 	</dependencies>
-
 	<build>
 		<plugins>
 			<!-- Package as an executable jar/war -->
